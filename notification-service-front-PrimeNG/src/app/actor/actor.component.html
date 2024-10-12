@@ -1,0 +1,93 @@
+
+<p-card header="Actors" class="mt-3 mb-3 text-center">
+  <p class="m-0 ">
+    Here you can display, alter, delete and add new actors ...
+  </p>
+</p-card>
+
+<div class="card">
+  <p-table [columns]="cols" [value]="actors" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true"
+           [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="bg-lime-200" *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+
+          <ng-container *ngIf="col.field === 'sector'; else otherFields">
+            {{ rowData.sector.name }}
+          </ng-container>
+
+          <ng-template #otherFields>
+
+            <ng-container *ngIf="col.field; else actionTemplate">
+              {{ rowData[col.field] }}
+            </ng-container>
+
+            <ng-template #actionTemplate>
+              <i class="pi pi-spin pi-cog icon-act" (click)="showDialog(rowData)"></i>
+            </ng-template>
+
+          </ng-template>
+
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-toast />
+
+  <p-dialog header="Actions on Actors" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
+  <span class="p-text-secondary block mb-5">Perform quick and efficient operations on Actors<br>
+    Please note that the fields with this sign (*) are mandatory</span>
+
+
+    <div class="flex justify-between gap-3 mb-3">
+      <label for="id" class="font-semibold w-6rem">Id</label>
+      <input pInputText id="id" class="order-last bg-lime-300 hover:bg-neutral-400 main-input" disabled readonly autocomplete="off" [(ngModel)]="selectedActor.id" />
+    </div>
+
+    <div class="flex justify-between gap-3 mb-3">
+      <label for="username" class="font-semibold w-6rem">Username</label>
+      <input pInputText id="username" class="order-last w-57 main-input" autocomplete="off" [(ngModel)]="selectedActor.username" />
+    </div>
+
+    <div class="flex justify-between gap-3 mb-5">
+      <label for="email" class="font-semibold w-6rem">Email</label>
+      <input pInputText id="email" class="order-last w-57 main-input" autocomplete="off" [(ngModel)]="selectedActor.email" />
+    </div>
+
+    <div class="flex justify-between gap-3 mb-5">
+      <label for="phoneNumber" class="font-semibold w-6rem">Phone Number</label>
+      <input pInputText id="phoneNumber" class="order-last w-57 main-input" autocomplete="off" [(ngModel)]="selectedActor.phoneNumber" />
+    </div>
+
+    <div class="flex justify-between gap-3 mb-5">
+      <label for="sector" class="font-semibold w-6rem">Sector</label>
+      <p-dropdown id="sector" class="order-last w-57 custom-dropdown custom-dropdown-size" [options]="sectors" [(ngModel)]="selectedActor.sector" optionLabel="name" placeholder="Select a Sector"></p-dropdown>
+    </div>
+
+    <div class="flex justify-content-end gap-2">
+      <p-speedDial [model]="items" direction="left"></p-speedDial>
+    </div>
+  </p-dialog>
+
+
+
+  <p-toast />
+  <p-confirmDialog>
+    <ng-template pTemplate="message" let-message>
+      <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+        <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+        <p>{{ message.message }}</p>
+      </div>
+    </ng-template>
+  </p-confirmDialog>
+
+</div>
+

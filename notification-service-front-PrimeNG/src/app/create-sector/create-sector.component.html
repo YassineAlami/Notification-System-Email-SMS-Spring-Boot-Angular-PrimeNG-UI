@@ -1,0 +1,19 @@
+
+<div class="main-inputs">
+  <span class="p-float-label">
+    <input class="main-input" id="name-input" type="text" pInputText [(ngModel)]="sector.name">
+    <label for="float-input">Name</label>
+  </span>
+
+  <span class="p-float-label mt-3">
+    <input class="main-input" id="float-input" type="text" pInputText [(ngModel)]="sector.description">
+    <label for="float-input">Description</label>
+  </span>
+
+  <p-splitButton label="Save" (onClick)="create()" [model]="items" rounded severity="success" styleClass="custom-button" />
+
+</div>
+
+
+
+

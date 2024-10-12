@@ -1,0 +1,37 @@
+/* Default state: no underline */
+:host ::ng-deep .p-menubar .p-menuitem-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background: rgb(217 249 157); /* Green color */
+  transition: width 0.5s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Hover state: animate underline from right to left */
+:host ::ng-deep .p-menubar .p-menuitem-link:hover::after {
+  width: 100%; /* Full width */
+}
+
+
+/*:host ::ng-deep .p-menuitem {
+  background: linear-gradient(to bottom, #f9fafb 0%, #f9fafb 90%, rgb(217 249 157) 10%);
+  margin-right: 7px;
+}*/
+
+.fixed-menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure full width */
+  z-index: 1000; /* Set a high z-index to stay on top */
+}
+
+.content-container {
+  margin-top: 100px; /* Adjust margin based on menubar height */
+}
+
+

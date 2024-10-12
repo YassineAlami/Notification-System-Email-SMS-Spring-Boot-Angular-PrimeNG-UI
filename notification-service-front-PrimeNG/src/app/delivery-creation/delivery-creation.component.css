@@ -1,0 +1,40 @@
+
+:host ::ng-deep .custom-dropdown .p-dropdown {
+  border: 3px solid #90b24b;
+}
+:host ::ng-deep .custom-dropdown .p-dropdown.p-focus {
+  outline: 3px solid #90b24b;
+  /*outline-offset: 1px;*/
+}
+
+
+
+:host ::ng-deep .custom-dropdown-size .p-dropdown {
+  width: 255px; /* Adjust the width as needed */
+  /*height: 40px; !* Adjust the height as needed *!*/
+}
+
+:host ::ng-deep .custom-dropdown-size .p-dropdown-label {
+  line-height: 20px; /* Ensure the label aligns vertically if needed */
+}
+
+
+
+:host ::ng-deep .custom-calendar .p-inputtext {
+  border: 3px solid #90b24b; /* Match the border of the input field */
+  border-radius: 4px; /* Adjust if needed to match the default border radius */
+}
+
+:host ::ng-deep .custom-calendar .p-inputtext.p-focus {
+  outline: 3px solid #90b24b;
+  /* outline-offset: 1px; */
+}
+
+:host ::ng-deep .custom-calendar-size .p-calendar {
+  width: 255px; /* Adjust the width as needed */
+  /* height: 40px; /* Adjust the height as needed */
+}
+
+:host ::ng-deep .custom-calendar-size .p-inputtext {
+  line-height: 20px; /* Ensure the input text aligns vertically if needed */
+}

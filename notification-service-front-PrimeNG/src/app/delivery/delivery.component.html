@@ -1,0 +1,172 @@
+
+<div class="card">
+  <p-card header="Deliveries" class="mt-3 mb-3 text-center">
+    <p class="m-0 ">
+      Here you can display, alter, delete and create new Deliveries ...
+    </p>
+  </p-card>
+
+
+
+  <div class="card">
+    <div class="flex justify-content-center mb-4 mt-4 ">
+      <p-selectButton
+              [options]="filterModes"
+              [(ngModel)]="filterMode"
+              optionLabel="label"
+              optionValue="value" />
+    </div>
+    <p-treeTable
+            #tt
+            [value]="deliveries"
+            [columns]="cols"
+            [paginator]="true"
+            [rows]="10"
+            [filterMode]="filterMode"
+            [scrollable]="true"
+            [tableStyle]="{'min-width':'50rem'}">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-end align-items-center">
+          <div class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input class="main-input"
+                   type="text"
+                   pInputText
+                   placeholder="Global Search"
+                   (input)="onGlobalFilter($event, tt)" />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns  >
+        <tr >
+          <th *ngFor="let col of cols" class="bg-lime-200">
+            {{ col.header }}
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor="let col of cols" class="bg-lime-200">
+            <input class="main-input custom-input"
+                   pInputText
+                   type="text"
+                   (input)="onColumnFilter($event, col.field, col.filterMatchMode, tt)" />
+          </th>
+        </tr>
+      </ng-template>
+
+
+      <!--<ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr [ttRow]="rowNode">
+          <td class="truncate-text" *ngFor="let col of cols; let i = index">
+            <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0" />
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>-->
+
+      <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr [ttRow]="rowNode">
+          <td class="truncate-text" *ngFor="let col of cols; let i = index">
+            <p-treeTableToggler  [rowNode]="rowNode" *ngIf="i === 0" />
+
+            <!-- Custom template for the Delivery State field -->
+            <ng-container *ngIf="col.field === 'state'">
+              <div class="flex items-center justify-between" >
+                {{ rowData[col.field]}}
+                <span *ngIf="rowData[col.field] === 'sent'">
+                  <p-avatar icon="fa-solid fa-paper-plane" styleClass="pr-1 ml-3 pb-0 bg-lime-200" shape="circle" />
+                </span>
+                <span *ngIf="rowData[col.field] === 'pending'">
+                  <p-avatar icon="fa-solid fa-hourglass-start" styleClass="pr-0 ml-3 pb-0 bg-orange-300" shape="circle" />
+                </span>
+                <span class="" *ngIf="rowData[col.field] === null || rowData[col.field] === '-'">
+                  <p-avatar icon="fa-solid fa-triangle-exclamation" styleClass="pr-0 ml-3 pb-0 bg-amber-200" shape="circle" />
+              </span>
+              </div>
+
+            </ng-container>
+
+            <!-- Custom template for the Delivery Date field -->
+            <ng-container *ngIf="col.field === 'deliveryDate'">
+              <!--<i class="pi pi-calendar"></i>-->
+              {{ rowData[col.field] | date: 'd/M/yy, h:mm a' }}
+            </ng-container>
+
+
+            <!--&lt;!&ndash;Additional Icon Customization&ndash;&gt;
+            <ng-container *ngIf="col.field === 'creationDate'">
+              <i class="pi pi-clock"></i>
+              {{ rowData[col.field] }}
+            </ng-container>
+            <ng-container *ngIf="col.field === 'estimatedDeliveryDate'">
+              <i class="pi pi-calendar-plus"></i>
+              {{ rowData[col.field] }}
+            </ng-container>-->
+
+            <!-- Custom template for the Delivery Date field -->
+            <ng-container *ngIf="col.field === 'content'">
+              <!--<i class="pi pi-calendar"></i>-->
+              <span [pTooltip]="rowData[col.field]"  tooltipPosition="top">
+                {{ rowData[col.field] }}
+              </span>
+
+            </ng-container>
+
+            <!-- Custom template for the Count of the Delivery's Notifications field -->
+            <ng-container *ngIf="col.field === 'notificationCount'">
+              {{ rowData[col.field] }}
+              <span class="ml-3" *ngIf="rowData[col.field] === 0">
+                <!--<p-avatar icon="fa-solid fa-exclamation" styleClass="pl-1 mr-10 pb-0 bg-red-500" />-->
+                <p-avatar icon="fa-solid fa-bell" styleClass="pl-1 mr-10 pb-0 bg-red-500 " class="white-icon"/>
+              </span>
+            </ng-container>
+
+            <!-- Custom template for the Count of the Delivery's Notifications field -->
+            <ng-container *ngIf="col.field === 'users'">
+              {{ rowData[col.field] }}
+              <span class="ml-3" *ngIf="rowData[col.field] === 0">
+                <p-avatar icon="fa-solid fa-users" styleClass="pl-0 mr-10 pb-0 bg-red-500" />
+                <!--<p-avatar icon="fa-solid fa-exclamation" styleClass="pl-1 mr-10 pb-0 bg-red-500" />-->
+              </span>
+            </ng-container>
+
+            <!-- Custom template for the Delivery Id field -->
+            <ng-container *ngIf="col.field === 'id' && rowData[col.field]" >
+              <span >
+                {{ rowData[col.field] }}
+                <!--<button (click)="getDeliveryState(rowData[col.field])">ok</button>-->
+                <!--<p-tag *ngIf="printDeliveryStateById(rowData[col.field]) != 'sent'"-->
+                <p-tag
+                  value="Send" (click)="sendDeliveryNotifications2(rowData[col.field])" severity="info"  class="clickable-span ml-1"/>
+              </span>
+            </ng-container>
+
+            <!-- Default template for other fields -->
+            <ng-container *ngIf="col.field !== 'deliveryDate' && col.field !== 'state' && col.field !== 'content' && col.field !== 'notificationCount' && col.field !== 'users'&& col.field !== 'id'">
+              {{ rowData[col.field] }}
+            </ng-container>
+          </td>
+        </tr>
+      </ng-template>
+
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="cols.length">No data found.</td>
+        </tr>
+      </ng-template>
+
+
+    </p-treeTable>
+  </div>
+
+
+  <p-toast />
+  <p-confirmDialog>
+    <ng-template pTemplate="message" let-message>
+      <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+        <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+        <p>{{ message.message }}</p>
+      </div>
+    </ng-template>
+  </p-confirmDialog>
+</div>

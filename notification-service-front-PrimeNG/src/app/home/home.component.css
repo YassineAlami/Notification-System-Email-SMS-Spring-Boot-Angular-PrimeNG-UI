@@ -1,0 +1,113 @@
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeinleft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeoutleft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-100px); }
+}
+
+@keyframes fadeinright {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeoutright {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100px); }
+}
+
+/* Additional animations */
+.animated-box {
+  background: radial-gradient(var(--primary-300), var(--primary-600));
+  border-radius: 50% !important;
+  color: var(--primary-color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 10rem;
+  margin: 2rem 0;
+  transition: all 1s ease;
+}
+
+.fadein {
+  animation: fadein 7s forwards;
+}
+
+.fadeout {
+  animation: fadeout 3s forwards;
+}
+
+.fadeinleft {
+  animation: fadeinleft 3s forwards;
+}
+
+.fadeoutleft {
+  animation: fadeoutleft 3s forwards;
+}
+
+.fadeinright {
+  animation: fadeinright 3s forwards;
+}
+
+.fadeoutright {
+  animation: fadeoutright 3s forwards;
+}
+
+
+
+
+
+
+
+
+.main-cards{
+  padding:50px 20px 20px 20px;
+  text-align:center;
+  align-content:center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.main-knobs{
+  padding:50px 20px 20px 20px;
+  text-align:center;
+  align-content:center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main-stats{
+  width:80%;
+
+}
+p-meterGroup .p-meter-group-label .flex {
+  justify-content: flex-start; /* Ensure the flex container starts from the left */
+}
+
+p-meterGroup .p-meter-group-label .p-card {
+  display: flex; /* Use flex display for the p-card */
+}
+
+.label-value-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-wrapper {
+  margin-left: auto;
+}
+
+

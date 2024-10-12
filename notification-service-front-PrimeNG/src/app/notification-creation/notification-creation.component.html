@@ -1,0 +1,275 @@
+
+
+<div class="card">
+
+  <p-stepper [linear]="true">
+
+    <p-stepperPanel header="Notification">
+      <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+
+        <p-splitter [style]="{ height: '500px' }" styleClass="mb-3">
+          <ng-template pTemplate>
+
+            <p-splitter [style]="{ height: '100px' }" styleClass="mb-3" layout="vertical">
+
+              <ng-template pTemplate>
+
+                <p-splitter [style]="{ height: '400px' }" styleClass="mb-3" layout="vertical">
+                  <ng-template pTemplate>
+                    <div class="flex align-items-center justify-content-center content-center">
+
+                      <div >
+                        <label for="notificationType" class="flex flex-wrap font-semibold content-center">Notification Type</label>
+                        <p-dropdown id="notificationType" class="custom-dropdown custom-dropdown-size" (ngModelChange)="filterTemplates($event)" [options]="notificationTypes" optionLabel="name" [(ngModel)]="notification.type"  placeholder="Select a Type"></p-dropdown>
+                      </div>
+
+                      <div>
+                        <label for="template" class="flex flex-wrap font-semibold content-center">Template</label>
+                        <p-dropdown id="template" class="custom-dropdown custom-dropdown-size" [options]="templates" optionLabel="title" [(ngModel)]="selectedTemplate" (ngModelChange)="updateTextareaContent()" placeholder="Select a Template"></p-dropdown>
+                      </div>
+
+                    </div>
+                  </ng-template>
+                  <ng-template pTemplate>
+                    <div class="col flex align-items-center justify-content-center mt-5 ml-24">
+                      <div class="flex flex-wrap"> <!-- Add flex-wrap class to enable wrapping -->
+
+                        <div *ngIf="showNameInput">
+                          <label for="name" class="font-semibold content-center-bottom">Name</label>
+                          <input pInputText id="name" class="custom-input custom-input-size" placeholder="Please enter a name" autocomplete="off" [(ngModel)]="name"  />
+                        </div>
+
+                        <div *ngIf="showDateInput">
+                          <label for="date" class="font-semibold content-center-bottom">Date</label>
+                          <input pInputText id="date" class="custom-input custom-input-size" placeholder="e.g.: 01/01/2024" autocomplete="off" [(ngModel)]="date" />
+                        </div>
+
+                        <div *ngIf="showTimeInput">
+                          <label for="time" class="font-semibold content-center-bottom">Time</label>
+                          <input pInputText id="time" class="custom-input custom-input-size" placeholder="e.g.: 09:45" autocomplete="off" [(ngModel)]="time" />
+                        </div>
+
+                        <div *ngIf="showLocationInput">
+                          <label for="location" class="font-semibold content-center-bottom">Location</label>
+                          <input pInputText id="location" class="custom-input custom-input-size" placeholder="e.g.: Le Palais des Congrès" autocomplete="off" [(ngModel)]="location" />
+                        </div>
+
+                        <div *ngIf="showSalaryInput">
+                          <label for="salary" class="font-semibold content-center-bottom">Salary</label>
+                          <input pInputText id="salary" class="custom-input custom-input-size" placeholder="e.g.: 15000" autocomplete="off" [(ngModel)]="salary" />
+                        </div>
+
+                        <div *ngIf="showReasonInput">
+                          <label for="reason" class="font-semibold content-center-bottom">Reason</label>
+                          <input pInputText id="reason" class="custom-input custom-input-size" autocomplete="off" placeholder="Please enter a reason" [(ngModel)]="reason" />
+                        </div>
+
+                        <div *ngIf="showTopicInput">
+                          <label for="topic" class="font-semibold content-center-bottom">Topic</label>
+                          <input pInputText id="topic" class="custom-input custom-input-size" placeholder="Please enter a topic" autocomplete="off" [(ngModel)]="topic" />
+                        </div>
+
+                        <div *ngIf="showDescriptionInput">
+                          <label for="description" class="font-semibold content-center-bottom">Description</label>
+                          <input pInputText id="description" class="custom-input custom-input-size" placeholder="Please enter a description" autocomplete="off" [(ngModel)]="description" />
+                        </div>
+
+                        <div *ngIf="showContactInfoInput">
+                          <label for="contact" class="font-semibold content-center-bottom">Contact</label>
+                          <input pInputText id="contact" class="custom-input custom-input-size" placeholder="e.g.: example@example.info" autocomplete="off" [(ngModel)]="contact" />
+                        </div>
+
+                      </div>
+                    </div>
+                  </ng-template>
+                </p-splitter>
+
+              </ng-template>
+            </p-splitter>
+
+          </ng-template>
+          <ng-template pTemplate>
+            <div class="col d-flex flex-column align-items-center justify-content-start mt-5">
+              <div class="label font-semibold">
+                <label  for="content">Content</label>
+              </div>
+              <div class="align-self-start textarea-center" >
+                  <textarea readonly rows="5" cols="50" pInputTextarea [autoResize]="true" id="content"
+                            class="bg-lime-200 hover:bg-neutral-200 main-input" autocomplete="off" [(ngModel)]="notification.content">
+                  </textarea>
+              </div>
+              <div class="label font-semibold">
+                <p-button label="Adjust" [rounded]="true" severity="contrast" icon="pi pi-arrow-down" iconPos="right" class="ml-5" (onClick)="generateCustomizedTemplate()" />
+              </div>
+            </div>
+          </ng-template>
+        </p-splitter>
+
+
+
+        <div class="flex justify-content-end">
+          <p-button label="Save & Exit" [rounded]="true" severity="success" icon="pi pi-check" iconPos="right" class="mr-5" (onClick)="saveNotification()" />
+          <p-button label="Next" [rounded]="true" severity="info" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
+        </div>
+
+
+
+
+
+
+
+
+
+      </ng-template>
+    </p-stepperPanel>
+
+
+
+
+
+
+
+    <p-stepperPanel header="Audience">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+
+
+
+
+        <p-iconField iconPosition="left" class="ml-56 mr-24 flex-1 w-96" >
+          <p-inputIcon styleClass="pi pi-search" />
+          <input class="main-input" type="text" pInputText placeholder="By name, email, phone number or sector" [(ngModel)]="filterText" (ngModelChange)="applyFilter()" />
+        </p-iconField>
+
+
+        <p-pickList [source]="filteredActors" [target]="notification.users"
+                    sourceHeader="Available" targetHeader="Selected"
+                    [dragdrop]="true" [responsive]="true"
+                    [sourceStyle]="{ height: '30rem' }" [targetStyle]="{ height: '30rem' }"
+                    filterBy="id"
+                    sourceFilterPlaceholder="Search by id"
+                    targetFilterPlaceholder="Search by id"
+                    breakpoint="1400px">
+
+          <ng-template let-actor pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+
+              <!--<img
+                class="w-4rem shadow-2 flex-shrink-0 border-round"
+                src="https://primefaces.org/cdn/primeng/images/demo/product/{{ actor.image }}"
+                alt="{item.name}" />-->
+
+              <div class="flex-1 flex flex-column gap-2">
+
+                <span class="font-bold">{{ actor.username }}</span>
+
+                <div class="flex align-products-center gap-2">
+                  <i class="fa-solid fa-fingerprint text-sm"></i>
+                  <span>{{ actor.id }}</span>
+                </div>
+
+                <div class="flex align-products-center gap-2">
+                  <i class="fa-solid fa-at text-sm"></i>
+                  <span>{{ actor.email }}</span>
+                </div>
+
+                <div class="flex align-products-center gap-2">
+                  <i class="fa-solid fa-phone text-sm"></i>
+                  <span>{{ actor.phoneNumber }}</span>
+                </div>
+
+              </div>
+              <span class="font-bold text-900">
+                        {{ actor.sector.name }}
+                    </span>
+            </div>
+          </ng-template>
+        </p-pickList>
+
+
+
+        <div class="flex justify-content-end mt-7">
+          <p-button label="Back" [rounded]="true" severity="info" icon="pi pi-arrow-left" iconPos="left" (onClick)="prevCallback.emit()" />
+          <p-button label="Save & Exit" [rounded]="true" severity="success" icon="pi pi-check" iconPos="right" class="ml-5 mr-5" (onClick)="saveNotification()" />
+          <p-button label="Next" [rounded]="true" severity="info" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
+        </div>
+
+
+      </ng-template>
+    </p-stepperPanel>
+
+    <p-stepperPanel header="Delivery">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+
+
+              <p-dataView #dv [value]="actors" [rows]="5" [paginator]="true">
+                <ng-template pTemplate="list" let-actors>
+
+                  <div class=" flex justify-center">
+                    <p>Please select a delivery.</p>
+                  </div>
+
+
+                    <div  *ngFor="let item of deliveries; let first = first">
+                      <div class=" flex justify-center ml-96" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                        <!--<div class="md:w-10rem relative">
+                          &lt;!&ndash;<img class="block xl:block mx-auto border-round w-full" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image" [alt]="item.username" />&ndash;&gt;
+                          &lt;!&ndash;<img class="block xl:block mx-25 border-round w-25" [src]="'https://cdg.ma/sites/default/files/2021-09/CDG%20Pr%C3%A9voyance_2.jpg'" [alt]="item.name" />
+                          <p-tag [value]="item.state" [severity]="getSeverity(item)" class="absolute" [style.left.px]="4" [style.top.px]="4" />&ndash;&gt;
+                        </div>-->
+
+                        <div class="flex-grow w-1/2 order-first">
+                          <div>
+                            <p-tag [value]="(item?.state && item?.state !== '-') ? item?.state : 'not assigned'" [severity]="getSeverity(item)" [pTooltip]="item.deliveryDate ? item.deliveryDate.toLocaleDateString() : 'no date assigned'"  tooltipPosition="bottom" />
+                            <span class="font-medium text-secondary text-sm ml-5">Id : {{ item.id }}</span>
+                            <div class="text-lg font-medium text-900 mt-2">{{ item.name }}</div>
+                          </div>
+                          <div class="surface-100 pl-2 pb-10" style="border-radius: 30px">
+                            <div class=" flex align-items-center gap-3 mt-2" style="border-radius: 30px;">
+                              <span class="text-900 font-medium text-sm">{{ getnotificationCount(item) }}</span>
+                              <i class="fa-solid fa-bell text-yellow-500"></i>
+                            </div>
+                          </div>
+                        </div>
+
+
+                          <div class="flex-grow w-1/2 order-last">
+                            <div>
+                              <span class="text-xl font-semibold text-900 ">{{ item.deliveryMethod.name }}</span>
+                              <div class="mt-2" >
+                                <!--<p-button icon="pi pi-heart" [outlined]="true" />-->
+                                <p-button severity="success" [outlined]="notification && notification.delivery && notification.delivery.id !== item.id" icon="fa-solid fa-check" (onClick)="selectDelivery(item)" class="" label="Select" [disabled]="item.state === 'sent'" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <p-divider />
+                      </div>
+
+
+
+                </ng-template>
+              </p-dataView>
+
+
+
+
+
+        <div class="flex justify-content-end mt-7">
+          <p-button label="Back" [rounded]="true" severity="info" icon="pi pi-arrow-left" iconPos="left" (onClick)="prevCallback.emit()" />
+          <p-button label="Save & Exit" [rounded]="true" severity="success" icon="pi pi-check" iconPos="right" class="ml-5 mr-5" (onClick)="saveNotification()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+
+  </p-stepper>
+
+  <p-toast />
+  <p-confirmDialog>
+    <ng-template pTemplate="message" let-message>
+      <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+        <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+        <p>{{ message.message }}</p>
+      </div>
+    </ng-template>
+  </p-confirmDialog>
+</div>

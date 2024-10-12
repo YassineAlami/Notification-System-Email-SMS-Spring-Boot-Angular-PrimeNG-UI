@@ -1,0 +1,239 @@
+
+<!--<div *ngIf="deliveryStats">
+  <p>Total Deliveries: {{ deliveryStats.totalDeliveries }}</p>
+  <p>Sent Deliveries: {{ deliveryStats.sentDeliveries }} ({{ deliveryStats.sentDeliveriesPercentage.toFixed(2) }}%)</p>
+  <p>Pending Deliveries: {{ deliveryStats.pendingDeliveries }} ({{ deliveryStats.pendingDeliveriesPercentage.toFixed(2) }}%)</p>
+  <p>Other Deliveries: {{ deliveryStats.otherDeliveries }} ({{ deliveryStats.otherDeliveriesPercentage.toFixed(2) }}%)</p>
+</div>-->
+
+<!--<div *ngIf="notificationStats">
+  <p>Total Notifications: {{ notificationStats.totalNotifications }}</p>
+  <p>Salary Change Notifications: {{ notificationStats['Salary ChangeNotificationsCount'] }} ({{ notificationStats['Salary ChangeNotificationsPercentage'].toFixed(2) }}%)</p>
+  <p>Meeting Notifications: {{ notificationStats.MeetingNotificationsCount }} ({{ notificationStats.MeetingNotificationsPercentage.toFixed(2) }}%)</p>
+  <p>New Policy Notifications: {{ notificationStats['New PolicyNotificationsCount'] }} ({{ notificationStats['New PolicyNotificationsPercentage'].toFixed(2) }}%)</p>
+  <p>Event Notifications: {{ notificationStats.EventNotificationsCount }} ({{ notificationStats.EventNotificationsPercentage.toFixed(2) }}%)</p>
+  <p>Changement de Pension Notifications: {{ notificationStats['Changement de PensionNotificationsCount'] }} ({{ notificationStats['Changement de PensionNotificationsPercentage'].toFixed(2) }}%)</p>
+</div>-->
+
+<!--
+<div *ngIf="statistics">
+  <h2>Notification Statistics for {{ monthYear }}</h2>
+  <ul>
+    <li>Total Notifications: {{ statistics.totalNotifications }}</li>
+    <li>Notifications with Sent Delivery: {{ statistics.notificationsWithSentDelivery }}</li>
+    <li>Notifications with Pending Delivery: {{ statistics.notificationsWithPendingDelivery }}</li>
+    <li>Notifications with No Delivery State: {{ statistics.notificationsWithNoDeliveryState }}</li>
+    <li>Notifications with No Delivery: {{ statistics.notificationsWithNoDelivery }}</li>
+    <li>Notifications with No User: {{ statistics.notificationsWithNoUser }}</li>
+    <li>Notifications with Users but No Delivery: {{ statistics.notificationsWithUsersNoDelivery }}</li>
+  </ul>
+</div>
+<div *ngIf="!statistics">
+  <p>Loading statistics...</p>
+</div>-->
+
+
+
+<p-scrollTop />
+
+
+<!--<span class="text-xl font-medium">Scroll Down</span>-->
+
+
+<div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+<div class="main-stats ml-36">
+  <div class="mb-3">
+    <span class="text-3xl font-bold">Deliveries</span><br>
+    <span class="text-xl font-medium">Within our system, a delivery functions as a container for a defined group of notifications, ultimately intended for transmission to a designated recipient.</span>
+  </div>
+
+  <p-meterGroup [value]="valueDeliveries" labelPosition="start">
+    <ng-template pTemplate="label">
+      <div  class="flex flex-wrap gap-3">
+        <ng-container *ngFor="let meterItem of valueDeliveries; let index = index">
+
+          <p-card class="flex-1 " [style]="{'background-color': '#F9F9F9'}">
+            <div class="flex justify-content-between gap-3 ">
+              <div class="flex flex-column gap-1">
+                <div class="label-value-container">
+                  <span class="font-bold text-xl mb-3">{{ meterItem.label }}</span>
+                  <span class="text-secondary text-sm">{{ meterItem.count }}</span>
+                  <span class="font-bold text-lg">{{ meterItem.value.toFixed(2) }}%</span>
+                </div>
+              </div>
+              <span class="icon-wrapper">
+                <p-avatar [style]="{ 'background': 'linear-gradient(to right, ' + meterItem.color1 + ', ' + meterItem.color2 + ')', color: '#ffffff' }" [icon]="meterItem.icon" styleClass="mr-2" size="large" shape="circle" />
+              </span>
+            </div>
+          </p-card>
+        </ng-container>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="meter" let-value let-class="class" let-width="size">
+      <span [class]="class" [style]="{ background: 'linear-gradient(to right, ' + value.color1 + ', ' + value.color2 + ')', width: width }"></span>
+    </ng-template>
+    <ng-template pTemplate="start" let-totalPercent="totalPercent">
+      <div class="flex justify-content-between mt-3 mb-2 relative" *ngIf="deliveryStats" >
+        <span>Total</span>
+        <span [style]="{ width: totalPercent + '%' }" class="absolute text-right ">{{ totalPercent }}%</span>
+        <span class="font-medium ml-3">{{deliveryStats.totalDeliveries}}</span>
+      </div>
+
+    </ng-template>
+
+    <!--<ng-template pTemplate="end">
+      <div class="flex justify-content-between mt-3">
+        <p-button label="Manage Storage" [outlined]="true" size="small" />
+        <p-button label="Update Plan" size="small" />
+      </div>
+    </ng-template>-->
+
+  </p-meterGroup>
+
+  <div class="main-knobs mt-10" [style]="{'background-color': '#F9F9F9'}">
+    <div  pAnimateOnScroll enterClass="fadein" leaveClass="fadein" *ngIf="deliveryStats">
+      <span  class="font-bold text-lg ">Deliveries without Notifications %</span><br>
+      <span  class="font-medium text-sm ">{{deliveryStats.deliveriesWithoutNotificationsCount}}/{{deliveryStats.totalDeliveries}}</span>
+      <p-knob [(ngModel)]=deliveryStats.deliveriesWithoutNotificationsPercentage valueColor="red" rangeColor="SlateGray" [size]="150"/>
+      <span  class="font-medium text-sm ">The graph presented visualizes statistical data concerning deliveries within the application that were initiated but remain unassociated with specific notification content</span>
+    </div>
+
+    <div  pAnimateOnScroll enterClass="fadein" leaveClass="fadein" *ngIf="deliveryStats">
+      <span  class="font-bold text-lg ">Deliveries without Targets %</span><br>
+      <span  class="font-medium text-sm ">{{deliveryStats.deliveriesWithNotificationsWithoutUsersCount}}/{{deliveryStats.totalDeliveries}}</span>
+      <p-knob [(ngModel)]=deliveryStats.deliveriesWithNotificationsWithoutUsersPercentage valueColor="brown" [size]="150" />
+      <span  class="font-medium text-sm ">The data above illustrates the statistics for deliveries created in the system that have been assigned a notification(s) but have not yet been assigned any user(s).</span>
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+
+
+
+<p-divider />
+
+<div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeinright" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+<div class="main-stats ml-36 mt-10">
+  <div class="mb-1">
+    <span class="text-3xl font-bold">Notifications</span><br>
+    <span class="text-xl font-medium">A notification acts as the content carrier within our system. It holds the message details and identifies the targeted users. While a notification can reach multiple recipients, it can only be part of a single delivery.</span>
+  </div>
+  <p-card class="" [style]="{'background-color': '#F9F9F9'}">
+    <div class=" mt-1 mb-5"  *ngIf="notificationStats">
+      <span>Total</span>
+      <!--<span class="font-medium ml-3">{{deliveryStats.totalDeliveries}}</span>-->
+      <span  class="font-medium ml-3">{{ notificationStats.totalNotifications }}</span>
+    </div>
+      <p-meterGroup [value]="valueNotifications" [max]="100" />
+  </p-card>
+
+
+
+  <div class="main-knobs" >
+    <div>
+      <span  class="font-bold text-lg ">Notifications with Deliveries %</span>
+      <p-knob [(ngModel)]=notificationStats.notificationsWithDeliveryPercentage valueColor="MediumTurquoise" rangeColor="SlateGray" [size]="150"/>
+      <span  class="font-medium text-sm ">This data presented pertains to the notifications that are part of a delivery.</span>
+    </div>
+
+    <div>
+      <span  class="font-bold text-lg ">Notifications with Users %</span>
+      <p-knob [(ngModel)]=notificationStats.notificationsWithUserPercentage [size]="150" />
+      <span  class="font-medium text-sm ">While some notifications are created without a specific user, this data focuses on those with defined audience.</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+<p-divider />
+
+<div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000 animation-ease-in-out">
+  <div class="main-stats ml-36">
+    <div class="mb-3" >
+      <span class="text-3xl font-bold">Global Overview</span><br>
+      <span class="text-xl font-medium">The following section presents a comparative analysis of notification statistics for the current month and the preceding one.</span>
+
+
+
+  <div class="main-knobs" >
+    <p-chart pAnimateOnScroll enterClass="fadein" leaveClass="fadein" type="radar" [data]="data" [options]="options"  />
+  </div>
+
+    </div>
+</div>
+</div>
+
+<p-divider />
+
+
+<div class="ml-36 mt-5 mb-5" pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft">
+  <span class="text-3xl font-bold ">Delivery Workflow</span><br>
+  <span class="text-xl font-medium ">A concise overview of how notifications reach their recipients.</span>
+
+</div>
+
+
+<div class="card" >
+  <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+    <ng-template pTemplate="marker" let-event>
+            <span>
+              <p-avatar [style]="{ 'background': event.color , color: '#ffffff' }" [icon]="event.icon" styleClass="mr-0"  shape="circle" />
+            </span>
+    </ng-template>
+
+    <ng-template pTemplate="content" let-event>
+
+      <div pAnimateOnScroll
+           [enterClass]="event.status === 'Aim' ? 'fadeinleft' : 'fadeinright'"
+           [leaveClass]="event.status === 'Aim' ? 'fadeoutleft' : 'fadeoutright'">
+
+        <p-card [header]="event.status" [subheader]="event.date" [style]="{'background-color': '#F9F9F9'}">
+
+          <img *ngIf="event.image ==='game-controller.jpg'"
+               [src]="'https://cdn.dribbble.com/users/827277/screenshots/4493070/media/63513ca66c9d61baefb787e174ae8f28.gif'"
+               [alt]="event.name"
+               class="shadow-2 object-cover h-48 w-96 rounded-lg ml-36" />
+
+
+          <img *ngIf="event.image ==='baidada.jpg'"
+               [src]="'https://cdn.dribbble.com/users/419466/screenshots/7187243/media/993dc71269f5ab2a9faff9fe9db69a60.gif'"
+               [alt]="event.name"
+               class="shadow-2 object-cover h-48 w-96 rounded-lg mr-36" />
+
+          <img *ngIf="event.image ==='boy.jpg'"
+               [src]="'https://i.pinimg.com/originals/98/64/9a/98649add72e05e3cc1b8ae0e6f553c8e.gif'"
+               [alt]="event.name"
+               class="shadow-2 object-cover h-48 w-96 rounded-lg ml-36" />
+
+          <span *ngIf="event.status === 'Create'">
+            <p>The foundation of a successful notification system lies in the creation of robust notification units. Within our system, crafting a notification requires specifying some essential details. Foremost is the notification type, which dictates the selection of the most appropriate template to align with your communication goals.</p>
+            <p-button label="See Notification" [text]="true"></p-button>
+        </span>
+
+          <span *ngIf="event.status === 'Aim'">
+            <p>After completing the essential notification details, you can then define the target audience. Our system allows for flexibility, enabling you to send notifications to a single recipient or a broader group of individuals.</p>
+            <p-button label="See Users" [text]="true"></p-button>
+        </span>
+
+          <span *ngIf="event.status === 'Deliver'">
+            <p>The final stage of this process involves dispatching the notifications. Once a delivery is fully prepared, it can be transmitted to the designated targets through the most suitable channel.</p>
+            <p-button label="See Deliveries" [text]="true"></p-button>
+        </span>
+        </p-card>
+      </div>
+
+
+    </ng-template>
+  </p-timeline>
+</div>
+
+
+
+

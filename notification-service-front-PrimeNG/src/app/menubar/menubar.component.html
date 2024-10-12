@@ -1,0 +1,22 @@
+
+<div class="fixed-menubar">
+  <p-menubar [model]="items" class="custom-menubar">
+    <ng-template pTemplate="start">
+      <img src="https://www.dreamjob.ma/wp-content/uploads/2022/09/CDG-Prevoyance-Emploi-Recrutement-750x375.png" height="40" class="mr-2"/>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <!--<input type="text" pInputText placeholder="Search" class="w-8rem sm:w-auto main-input" />-->
+        <!--<p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" size="large" />-->
+        <p-avatar icon="fa-solid fa-user" shape="circle" size="large" />
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>
+
+
+
+<div class="content-container">
+  <router-outlet></router-outlet>
+</div>
+

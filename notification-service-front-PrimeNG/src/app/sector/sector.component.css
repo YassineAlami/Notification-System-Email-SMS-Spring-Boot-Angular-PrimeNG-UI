@@ -1,0 +1,22 @@
+  .table-green-border{
+  border : #90b24b 3px solid;
+}
+
+.icon-act{
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
+}
+
+/* Customize the paginator active page background color */
+::ng-deep .p-paginator .p-paginator-page.p-highlight {
+  background-color: rgb(217 249 157) !important; /* Change to your desired color */
+  color: #ababab; /* Change text color if needed */
+}

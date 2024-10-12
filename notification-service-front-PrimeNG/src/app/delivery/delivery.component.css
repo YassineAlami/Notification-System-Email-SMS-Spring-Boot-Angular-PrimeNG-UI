@@ -1,0 +1,50 @@
+
+:host ::ng-deep .custom-input {
+    border: 3px solid #90b24b;
+    /*margin: 10px;*/
+    width:150px;
+    height:35px;
+}
+
+:host ::ng-deep .custom-input:focus {
+    outline: 3px solid #90b24b;
+}
+
+:host ::ng-deep .custom-input-size {
+    width: 550px; /* Adjust the width as needed */
+    /*height: 40px; !* Adjust the height as needed *!*/
+}
+
+:host ::ng-deep .custom-input-label {
+    line-height: 20px; /* Ensure the label aligns vertically if needed */
+}
+
+
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 350px;
+}
+
+
+::ng-deep .p-paginator .p-paginator-page.p-highlight {
+    background-color: rgb(217 249 157) !important; /* Change to your desired color */
+    color: #ababab; /* Change text color if needed */
+}
+
+
+::ng-deep .p-treeTableToggler {
+    background-color: rgb(217 249 157) !important; /* Change to your desired color */
+    color: #ababab; /* Change text color if needed */
+}
+
+
+.clickable-span {
+  cursor: pointer;
+}
+
+
+.white-icon .p-avatar-icon {
+  color: white !important;
+}

@@ -1,0 +1,200 @@
+
+<div class="card">
+
+  <p-card header="Notifications" class="mt-3 mb-3 text-center">
+    <p class="m-0 ">
+      Here you can display, alter, delete and create new Notifications ...
+    </p>
+  </p-card>
+
+</div>
+
+
+<p-table #dt1 [value]="notifications" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+         [globalFilterFields]="['id', 'content', 'creationDate', 'type.name', 'delivery.name', 'delivery.deliveryMethod.name']">
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+      <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input class="main-input" pInputText type="text" [(ngModel)]="searchValue" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search keyword" />
+            </span>
+    </div>
+  </ng-template>
+
+  <ng-template class="bg-lime-200" pTemplate="header">
+    <tr >
+
+      <th class="table-header" style="width:13%">Id</th>
+      <th class="table-header" style="width:20%">Content</th>
+      <th class="table-header" style="width:15%">Creation Date</th>
+      <th class="table-header" style="width:17%">Type</th>
+      <th class="table-header" style="width:17%">Delivery</th>
+      <th class="table-header" style="width:17%">Method</th>
+      <th class="table-header" style="width:15%">Action</th>
+
+    </tr>
+    <tr >
+      <th>
+        <p-columnFilter type="text" field="id" placeholder="By Id" ariaLabel="Filter id" />
+      </th>
+
+      <th>
+        <p-columnFilter type="text" field="content" placeholder="By Content" ariaLabel="Filter Content" />
+      </th>
+
+      <th>
+        <p-columnFilter type="text" field="creationDate" placeholder="by Date" ariaLabel="Filter Date" />
+      </th>
+
+      <th>
+        <p-columnFilter type="text" field="type.name" placeholder="By Type" ariaLabel="Filter Type" />
+      </th>
+
+      <th>
+        <p-columnFilter type="text" field="delivery.name" placeholder="By Delivery" ariaLabel="Filter Delivery" />
+      </th>
+
+      <th>
+        <p-columnFilter type="text" field="delivery.deliveryMethod.name" placeholder="By Method" ariaLabel="Filter Method" />
+      </th>
+
+      <th>
+      </th>
+
+    </tr>
+
+  </ng-template>
+
+
+  <ng-template pTemplate="body" let-notification>
+    <tr>
+      <td>
+        <span class="mr-5">
+          {{ notification.id }}
+        </span>
+
+
+        <span *ngIf="NotificationUserCount(notification) != 0" [pTooltip]="NotificationUserCount(notification).toString()"  tooltipPosition="bottom">
+          <!--[{{NotificationUserCount(notification)}}]-->
+          <p-avatar icon="fa-solid fa-users" styleClass="pr-0 bg-lime-200" shape="circle" />
+        </span>
+        <span *ngIf="NotificationUserCount(notification) == 0" pTooltip="no users"  tooltipPosition="bottom">
+          <p-avatar icon="fa-solid fa-users" styleClass="pr-0 bg-red-200" shape="circle" />
+        </span>
+
+      </td>
+
+      <td class="truncate-text" [pTooltip]="notification.content"  tooltipPosition="bottom">
+        {{ notification.content }}
+      </td>
+
+      <td>
+        {{ notification.creationDate | date: 'd/M/yy, h:mm a' }}
+      </td>
+
+      <td>
+        <div class="flex items-center justify-between">
+          {{ notification?.type?.name }}
+          <span *ngIf="notification.type?.name === 'Meeting'">
+            <p-avatar icon="fa-solid fa-user-group" styleClass="pr-0 mr-5 pb-1 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.type?.name === 'Event'">
+            <p-avatar icon="fa-solid fa-user-group" styleClass="pr-0 mr-5 pb-1 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.type?.name === 'New Policy'">
+            <p-avatar icon="fa-solid fa-handshake" styleClass="pr-0 mr-5 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.type?.name === 'Salary Change'">
+            <p-avatar icon="fa-solid fa-sack-dollar" styleClass="pr-0 mr-5 pb-1 bg-lime-200" shape="circle" />
+          </span>
+        </div>
+      </td>
+
+      <td>
+        <div>
+
+          <span *ngIf="notification?.delivery" class="flex items-center justify-between">
+            {{ notification.delivery.name }}
+
+            <span [pTooltip]="notification.delivery?.state==='-' ? 'no delivery date assigned' : notification.delivery?.state "  tooltipPosition="bottom">
+              <span *ngIf="notification.delivery?.state === 'sent'" >
+                <p-avatar icon="fa-solid fa-paper-plane" styleClass="pr-1 mr-10 bg-lime-200" shape="circle"
+                          [pTooltip]="formatDate(notification.delivery.deliveryDate)" tooltipPosition="top" />
+                <!--<p-avatar icon="fa-solid fa-paper-plane" styleClass="pr-1 mr-10 bg-lime-200" shape="circle" [pTooltip]="notification.delivery.deliveryDate" tooltipPosition="top" />-->
+              </span>
+
+              <span *ngIf="notification.delivery?.state === 'pending'">
+                <p-avatar icon="fa-solid fa-hourglass-start" styleClass="pr-0 mr-10 bg-orange-300" shape="circle" />
+              </span>
+
+              <span *ngIf="notification.delivery?.state === null || notification.delivery?.state === '-'" >
+                <p-avatar icon="fa-solid fa-triangle-exclamation" styleClass="pr-0 mr-10 pb-1 bg-amber-200" shape="circle" />
+              </span>
+
+            </span>
+          </span>
+
+          <span *ngIf="!notification?.delivery" >
+              <p-avatar icon="fa-solid fa-xmark" styleClass="pr-0 ml-20 pb-0 bg-red-300" pTooltip="no delivery assigned"  tooltipPosition="bottom"  shape="circle" />
+          </span>
+
+
+        </div>
+      </td>
+
+      <td >
+
+        <div class="flex items-center justify-between" *ngIf="notification?.delivery?.deliveryMethod">
+          {{ notification?.delivery?.deliveryMethod.name }}
+          <span *ngIf="notification.delivery?.deliveryMethod.name === 'Email'">
+            <p-avatar icon="fa-solid fa-at" styleClass="pr-0 mr-10 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.delivery?.deliveryMethod.name === 'SMS'">
+            <p-avatar icon="fa-solid fa-comment-sms" styleClass="pr-0 mr-10 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.delivery?.deliveryMethod.name === 'Call'">
+            <p-avatar icon="fa-solid fa-phone" styleClass="pr-0 mr-10 bg-lime-200" shape="circle" />
+          </span>
+          <span *ngIf="notification.delivery?.deliveryMethod.name === 'Mail'">
+            <p-avatar icon="fa-solid fa-envelope" styleClass="pr-0 mr-10 bg-lime-200" shape="circle" />
+          </span>
+        </div>
+        <div class="flex items-center justify-between" *ngIf="!notification?.delivery?.deliveryMethod">
+          <span >
+            <p-avatar icon="fa-solid fa-xmark" styleClass="pr-0 ml-20 pb-0 bg-red-300" pTooltip="no delivery assigned"  tooltipPosition="bottom"  shape="circle" />
+          </span>
+        </div>
+      </td>
+
+      <td>
+        <i class=" pi pi-spin pi-cog icon-act"     ></i>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+
+
+<!--<p-avatar icon="fas fa-check" styleClass="mx-3 bg-lime-200" shape="circle" />
+
+<button pButton type="button" label="Check" icon="fas fa-check"></button>
+
+<p-avatar icon="fa-solid fa-paper-plane" styleClass="pr-1 bg-lime-200" shape="circle" />-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
