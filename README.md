@@ -9,8 +9,8 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=25&pause=1000&color=AA00F7&width=435&lines=SIMULATION"/>
 
-**`Please note that the following simulation videos include audio commentary explaining the showcased features. Feel free to unmute to enhance your viewing experience!`**
-
+**` Please note that the following simulation videos include audio commentary explaining the showcased features. Feel free to unmute to enhance your viewing experience!`**
+🔇🔊📢
 
 <hr>
 
