@@ -24,7 +24,7 @@ https://github.com/user-attachments/assets/82c2a851-a3b3-4bca-be71-a3c8a42505f0
 ###
 
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Actors&center=true&vCenter=true""/></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Actors&center=true&vCenter=true"/></a>
 </p>
 
 https://github.com/user-attachments/assets/75d8742b-c316-4f36-9274-cdc3776f8207
@@ -33,7 +33,7 @@ https://github.com/user-attachments/assets/75d8742b-c316-4f36-9274-cdc3776f8207
 ###
 
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Notifications&center=true&vCenter=true""/></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Notifications&center=true&vCenter=true"/></a>
 </p>
 
 
@@ -59,7 +59,7 @@ https://github.com/user-attachments/assets/d453de5a-60d2-44ac-92f7-4f81b8f4a352
 ###
 
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Deliveries"/></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Deliveries&center=true&vCenter=true"/></a>
 </p>
 
 Display Deliveries
