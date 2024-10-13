@@ -1,6 +1,14 @@
 
+**`PLAN: `**
 
-Home :
+1- SIMULATION
+2- ARCHITECTURE
+3- TECHNOLOGIES
+
+
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=DA31F7&width=435&lines=Home&center=true&vCenter=true"" /></a>
+</p>
 
 https://github.com/user-attachments/assets/0b672083-9c6f-4e1e-8785-5e31d2ff1b13
 
