@@ -26,7 +26,11 @@ https://github.com/user-attachments/assets/0b672083-9c6f-4e1e-8785-5e31d2ff1b13
 <p align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=17&pause=1000&color=DA31F7&width=435&lines=Sectors&center=true&vCenter=true" /></a>
 </p>
-https://github.com/user-attachments/assets/82c2a851-a3b3-4bca-be71-a3c8a42505f0
+
+
+https://github.com/user-attachments/assets/cd185786-e46e-4a73-8363-00c059e9892b
+
+
 
 
 ###
