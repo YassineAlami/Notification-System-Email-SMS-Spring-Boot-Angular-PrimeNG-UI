@@ -1,35 +1,40 @@
 
 **`PLAN: `**
-
-1- SIMULATION
-2- ARCHITECTURE
-3- TECHNOLOGIES
+<br>
+1- SIMULATION <br>
+2- ARCHITECTURE <br>
+3- TECHNOLOGIES <br>
 
 
 <p align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=DA31F7&width=435&lines=Home&center=true&vCenter=true"" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Home&center=true&vCenter=true" /></a>
 </p>
+
 
 https://github.com/user-attachments/assets/0b672083-9c6f-4e1e-8785-5e31d2ff1b13
 
 ###
 
-
-Sectors :
-
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Sectors&center=true&vCenter=true" /></a>
+</p>
 https://github.com/user-attachments/assets/82c2a851-a3b3-4bca-be71-a3c8a42505f0
 
 
 ###
 
-Actors :
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Actors&center=true&vCenter=true""/></a>
+</p>
 
 https://github.com/user-attachments/assets/75d8742b-c316-4f36-9274-cdc3776f8207
 
 
 ###
 
-Notifications :
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Notifications&center=true&vCenter=true""/></a>
+</p>
 
 
 Display Notifications
@@ -42,26 +47,20 @@ https://github.com/user-attachments/assets/185c8b48-3faf-48a3-af33-00b0f2960831
 Filter Notification 
 
 
-
 https://github.com/user-attachments/assets/28d240bd-3366-4540-9d97-9db04c2d5706
-
-
-
 
 
 Create Notifications
 
 
-
 https://github.com/user-attachments/assets/d453de5a-60d2-44ac-92f7-4f81b8f4a352
-
-
-
 
 
 ###
 
-Deliveries :
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=10&pause=1000&color=DA31F7&width=435&lines=Deliveries"/></a>
+</p>
 
 Display Deliveries
 
