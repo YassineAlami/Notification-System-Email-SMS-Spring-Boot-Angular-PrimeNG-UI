@@ -5,7 +5,7 @@
 2- ARCHITECTURE <br>
 3- TECHNOLOGIES <br>
 
-<a <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=25&pause=1000&color=AA00F7&width=435&lines=SIMULATION"/></a>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=25&pause=1000&color=AA00F7&width=435&lines=SIMULATION"/>
 
 <p align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=17&pause=1000&color=DA31F7&width=435&lines=Home&center=true&vCenter=true" /></a>
