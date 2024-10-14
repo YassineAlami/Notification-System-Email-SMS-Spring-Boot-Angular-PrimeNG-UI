@@ -99,9 +99,11 @@ https://github.com/user-attachments/assets/7c440c76-1650-494e-94c1-9504615f4acf
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=25&pause=1000&color=AA00F7&width=435&lines=ARCHITECTURE"/>
 <hr>
 
+...
 
+![UML Class D](https://github.com/user-attachments/assets/dd71dd63-3bcd-4b78-9ed4-ac4c31cf7556)
 
-
+...
 
 <hr>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=25&pause=1000&color=AA00F7&width=435&lines=TECHNOLOGIES"/>
